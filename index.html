@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        #map {
+            width: 1019px;
+            height: 797px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/40_50cm_clip_0.js"></script>
+        <script src="data/1020cm_clip_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[6.3996730490664895,80.82612751691053],[6.421177049171487,80.85363640761088]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_40_50cm_clip_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Bulk_densi</th>\
+                        <td>' + (feature.properties['Bulk_densi'] !== null ? autolinker.link(feature.properties['Bulk_densi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Elevation_</th>\
+                        <td>' + (feature.properties['Elevation_'] !== null ? autolinker.link(feature.properties['Elevation_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Field_capa</th>\
+                        <td>' + (feature.properties['Field_capa'] !== null ? autolinker.link(feature.properties['Field_capa'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Garvel_con</th>\
+                        <td>' + (feature.properties['Garvel_con'] !== null ? autolinker.link(feature.properties['Garvel_con'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Porosity_%</th>\
+                        <td>' + (feature.properties['Porosity_%'] !== null ? autolinker.link(feature.properties['Porosity_%'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">sat.hydro.</th>\
+                        <td>' + (feature.properties['sat.hydro.'] !== null ? autolinker.link(feature.properties['sat.hydro.'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Saturated_</th>\
+                        <td>' + (feature.properties['Saturated_'] !== null ? autolinker.link(feature.properties['Saturated_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Wilting_po</th>\
+                        <td>' + (feature.properties['Wilting_po'] !== null ? autolinker.link(feature.properties['Wilting_po'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_40_50cm_clip_0_0() {
+            return {
+                pane: 'pane_40_50cm_clip_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(125,139,143,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_40_50cm_clip_0');
+        map.getPane('pane_40_50cm_clip_0').style.zIndex = 400;
+        map.getPane('pane_40_50cm_clip_0').style['mix-blend-mode'] = 'normal';
+        var layer_40_50cm_clip_0 = new L.geoJson(json_40_50cm_clip_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_40_50cm_clip_0',
+            layerName: 'layer_40_50cm_clip_0',
+            pane: 'pane_40_50cm_clip_0',
+            onEachFeature: pop_40_50cm_clip_0,
+            style: style_40_50cm_clip_0_0,
+        });
+        bounds_group.addLayer(layer_40_50cm_clip_0);
+        map.addLayer(layer_40_50cm_clip_0);
+        function pop_1020cm_clip_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Bulk_densi</th>\
+                        <td>' + (feature.properties['Bulk_densi'] !== null ? autolinker.link(feature.properties['Bulk_densi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Elevation_</th>\
+                        <td>' + (feature.properties['Elevation_'] !== null ? autolinker.link(feature.properties['Elevation_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Field_capa</th>\
+                        <td>' + (feature.properties['Field_capa'] !== null ? autolinker.link(feature.properties['Field_capa'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Garvel_%</th>\
+                        <td>' + (feature.properties['Garvel_%'] !== null ? autolinker.link(feature.properties['Garvel_%'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Porosity_%</th>\
+                        <td>' + (feature.properties['Porosity_%'] !== null ? autolinker.link(feature.properties['Porosity_%'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">sat.hydro.</th>\
+                        <td>' + (feature.properties['sat.hydro.'] !== null ? autolinker.link(feature.properties['sat.hydro.'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Saturated_</th>\
+                        <td>' + (feature.properties['Saturated_'] !== null ? autolinker.link(feature.properties['Saturated_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Wilting_po</th>\
+                        <td>' + (feature.properties['Wilting_po'] !== null ? autolinker.link(feature.properties['Wilting_po'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_1020cm_clip_1_0() {
+            return {
+                pane: 'pane_1020cm_clip_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(133,182,111,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_1020cm_clip_1');
+        map.getPane('pane_1020cm_clip_1').style.zIndex = 401;
+        map.getPane('pane_1020cm_clip_1').style['mix-blend-mode'] = 'normal';
+        var layer_1020cm_clip_1 = new L.geoJson(json_1020cm_clip_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_1020cm_clip_1',
+            layerName: 'layer_1020cm_clip_1',
+            pane: 'pane_1020cm_clip_1',
+            onEachFeature: pop_1020cm_clip_1,
+            style: style_1020cm_clip_1_0,
+        });
+        bounds_group.addLayer(layer_1020cm_clip_1);
+        map.addLayer(layer_1020cm_clip_1);
+        map.createPane('pane_BaseMap_2');
+        map.getPane('pane_BaseMap_2').style.zIndex = 402;
+        var img_BaseMap_2 = 'data/BaseMap_2.png';
+        var img_bounds_BaseMap_2 = [[6.397649196,80.830351866],[6.418129196,80.850831866]];
+        var layer_BaseMap_2 = new L.imageOverlay(img_BaseMap_2,
+                                              img_bounds_BaseMap_2,
+                                              {pane: 'pane_BaseMap_2'});
+        bounds_group.addLayer(layer_BaseMap_2);
+        map.addLayer(layer_BaseMap_2);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{"BaseMap": layer_BaseMap_2,'<img src="legend/1020cm_clip_1.png" /> 10-20cm_clip': layer_1020cm_clip_1,'<img src="legend/40_50cm_clip_0.png" /> 40_50cm_clip': layer_40_50cm_clip_0,}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body><h1>Soil Physical Properties- Research farm , Sugarcane Research Institute, Sri Lanka</h1>
+<h4>Parameter definitions: Bulk_densi=Soil b1ulk density (g/cm3), Elevation=Elevation (m) above MSL, Field_capa=Field capacity (m/m), Gravel_con= Garvel % (w/w), Porosity =%, sat.hydro=Saturated hydraulic conductivity (cm/day), Saturated=Saturated moisture content (m/m), Wilting_po=Soil wilting point (m/m)</h4>
+<h3>Created by LMJRW</h3>
+<h4>Citation: Wijayawardhana, L. M. J. R., Saputhanthri, S.D.T.P., Vidhana Arachchi, L.P. and Witharama, W.R.G (2017). Management of physical properties of reddish brown earth soils at Uda Walawe (Walawa series) for sustainable sugarcane production, Sugarcane Sri Lanka, Sugarcane Research Institute, Uda Walawe, Sri Lanka. Volume -3</h4>
+<h5>Copy rights - Crop and Resource Management Division, Sugarcane Research Institute, Sri Lanka</h5>
+
+    <div id="map">
+    </div>
+</html>
